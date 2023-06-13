@@ -8,7 +8,8 @@ const express = require("express");
 module.exports.addblog = async function addblog(req, res) {
   try {
     // console.log(req.body)
-    let {author, date, title, content} = req.body;
+    let {blog} = req.body;
+    let {author, date, title, content} = blog;
     if (author && date && title && content){
       let blog = await blogModel.create({ author, date, title, content });
       if (blog) {
@@ -16,7 +17,7 @@ module.exports.addblog = async function addblog(req, res) {
           message: "blog added successfully",
         });
       } else {
-        res.status(400).json({
+        return res.status(400).json({
           message: "Error Adding blog",
         });
       }
@@ -46,6 +47,25 @@ module.exports.viewblog = async function viewblog(req, res) {
       }
     }
     catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+module.exports.viewfewblog = async function viewfewblog(req, res) {
+  try {
+    const blogList = await blogModel.find().sort({ _id: -1 }).limit(5);;
+    if (blogList) {
+      return res.status(200).json({
+        blogList: blogList,
+      });
+    } else {
+      return res.status(400).json({
+        message: "No blogs found. Add some first",
+      });
+    }
+  } catch (err) {
     res.status(500).json({
       message: err.message,
     });
