@@ -9,7 +9,7 @@ const blogRouter = require("./routers/blogRouter");
 
 app.use(
   cors({
-    origin: "https://blog-page-five-beta.vercel.app/",
+    origin: "https://blog-page-five-beta.vercel.app",
     credentials: true,
   })
 );
