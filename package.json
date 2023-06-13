@@ -7,7 +7,7 @@
     "body-parser": "^1.20.2"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "name": "server",
   "version": "1.0.0",
