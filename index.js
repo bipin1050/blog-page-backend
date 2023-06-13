@@ -9,7 +9,7 @@ const blogRouter = require("./routers/blogRouter");
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://blog-page-five-beta.vercel.app/",
     credentials: true,
   })
 );
